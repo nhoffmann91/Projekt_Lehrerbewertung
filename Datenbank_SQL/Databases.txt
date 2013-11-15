@@ -1,0 +1,18 @@
+Queries
+
+1. CREATE TABLE t_lehrer (
+         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+         vname VARCHAR(100),
+	 nname VARCHAR(30),
+	 gesch CHAR(1)
+       );
+
+2. #insert into t_lehrer (vname,nname,gesch) values (Michael, Eiermann, m); ==> AEP 
+   insert into t_lehrer (vname,nname,gesch) values (Armin, Wittstock, m);
+   insert into t_lehrer (vname,nname,gesch) values (Silvia, Heigl, w);
+   insert into t_lehrer (vname,nname,gesch) values (Albrecht, Pleiderer, m);
+   insert into t_lehrer (vname,nname,gesch) values (Rainer, Pröbstel, m);
+   insert into t_lehrer (vname,nname,gesch) values (Joachim, Wiedorn, m);
+   insert into t_lehrer (vname,nname,gesch) values (Jan-Peter, Von Sivers, m);
+   insert into t_lehrer (vname,nname,gesch) values (Maria, Hilz, w);
+   insert into t_lehrer (vname,nname,gesch) values (Agnes, Heeren, w);
