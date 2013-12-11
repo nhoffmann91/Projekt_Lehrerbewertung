@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RatingActivity" >
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSubmit"
+        android:layout_alignBottom="@+id/btnSubmit"
+        android:layout_toLeftOf="@+id/btnSubmit"
+        android:text="Abbrechen" />
+
+    <TextView
+        android:id="@+id/txtViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ratingBarQuestion"
+        android:layout_marginBottom="66dp"
+        android:text="1. Frage" />
+
+    <TextView
+        android:id="@+id/txtViewIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnSubmit"
+        android:layout_marginBottom="21dp"
+        android:layout_marginLeft="44dp"
+        android:layout_toRightOf="@+id/txtViewQuestion"
+        android:text="1 von 5"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <RatingBar
+        android:id="@+id/ratingBarQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtViewIndex"
+        android:layout_alignLeft="@+id/txtViewQuestion"
+        android:layout_marginBottom="58dp" />
+
+    <TextView
+        android:id="@+id/txtViewHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtViewQuestion"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:text="Bewertungsbogen für Herr... in dem Fach..."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txtViewHeader"
+        android:layout_marginBottom="28dp"
+        android:text="Absenden/Next" />
+
+</RelativeLayout>

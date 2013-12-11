@@ -22,6 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="de.berufsschule.bewertungsApp.LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="de.berufsschule.bewertungsApp.TeacherChoice"
+            android:label="@string/title_activity_teacher_choice" >
+        </activity>
+        <activity
+            android:name="de.berufsschule.bewertungsApp.RatingActivity"
+            android:label="@string/title_activity_rating" >
+        </activity>
+        <activity
+            android:name="de.berufsschule.bewertungsApp.RankingActivity"
+            android:label="@string/title_activity_ranking" >
+        </activity>
     </application>
 
 </manifest>
