@@ -1,18 +1,121 @@
 Queries
 
-1. CREATE TABLE t_lehrer (
-         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-         vname VARCHAR(100),
-	 nname VARCHAR(30),
-	 gesch CHAR(1)
-       );
+1. CREATE TABLE 'bewertung'.'t_lehrer' (
+  
+		'id' INT NOT NULL AUTO_INCREMENT,
+  
+		'vname' VARCHAR(45) NOT NULL,
+  
+		'nname' VARCHAR(45) NOT NULL,
+  
+		PRIMARY KEY ('id'));
 
-2. #insert into t_lehrer (vname,nname,gesch) values (Michael, Eiermann, m); ==> AEP 
-   insert into t_lehrer (vname,nname,gesch) values (Armin, Wittstock, m);
-   insert into t_lehrer (vname,nname,gesch) values (Silvia, Heigl, w);
-   insert into t_lehrer (vname,nname,gesch) values (Albrecht, Pleiderer, m);
-   insert into t_lehrer (vname,nname,gesch) values (Rainer, Pröbstel, m);
-   insert into t_lehrer (vname,nname,gesch) values (Joachim, Wiedorn, m);
-   insert into t_lehrer (vname,nname,gesch) values (Jan-Peter, Von Sivers, m);
-   insert into t_lehrer (vname,nname,gesch) values (Maria, Hilz, w);
-   insert into t_lehrer (vname,nname,gesch) values (Agnes, Heeren, w);
+
+2. insert into t_lehrer (vname,nname,gesch) values (Michael, Eiermann, m); ==> AEP 
+   insert into t_lehrer (vname,nname,gesch) values (Armin, Wittstock, m); ==> ITS
+   insert into t_lehrer (vname,nname,gesch) values (Silvia, Heigl, w);	==> REL
+   insert into t_lehrer (vname,nname,gesch) values (Albrecht, Pleiderer, m); ==> D, AEP
+   insert into t_lehrer (vname,nname,gesch) values (Rainer, Pröbstel, m); ==> SOZ
+   insert into t_lehrer (vname,nname,gesch) values (Joachim, Wiedorn, m); ==> ITS
+   insert into t_lehrer (vname,nname,gesch) values (Jan-Peter, Von Sivers, m); ==> AEP
+   insert into t_lehrer (vname,nname,gesch) values (Maria, Hilz, w); ==> E
+   insert into t_lehrer (vname,nname,gesch) values (Agnes, Heeren, w); ==> SP
+
+3. CREATE TABLE 'bewertung'.'t_schueler' (
+   
+		'id' INT NOT NULL AUTO_INCREMENT,
+  
+		'vname' VARCHAR(45) NOT NULL,
+  
+		'nname' VARCHAR(45) NOT NULL,
+ 
+		'passwort' VARCHAR(8) NOT NULL,
+  
+		PRIMARY KEY ('id'));
+
+4. CREATE TABLE 'bewertung'.'t_fach' (
+  
+		'id' INT NOT NULL AUTO_INCREMENT,
+  
+		'kuerzel' VARCHAR(45) NOT NULL,
+  
+		'bez' VARCHAR(45) NOT NULL,
+  
+		PRIMARY KEY ('id'));
+
+5. CREATE TABLE 'bewertung'.'t_fragenkatalog' (
+  
+		'id' INT NOT NULL AUTO_INCREMENT,
+  
+		'frage' VARCHAR(45) NOT NULL,
+  
+		PRIMARY KEY ('id'));
+
+6. CREATE TABLE 'bewertung'.'t_klasse' (
+ 
+		'id' INT NOT NULL AUTO_INCREMENT,
+  
+		'jahrgang' INT NOT NULL,
+  
+		'fachbereich' VARCHAR(5) NOT NULL,
+  
+		'gruppe' CHAR NOT NULL,
+  
+		PRIMARY KEY ('id'));
+
+
+7. CREATE TABLE 'bewertung'.'t_ergebnis' (
+  
+	'id' INT NOT NULL AUTO_INCREMENT,
+  
+	'fk_fach' INT NOT NULL,
+  
+	'fk_fragenkatalog' INT NOT NULL,
+  
+	'fk_klasse' INT NOT NULL,
+  
+	'fk_lehrer' INT NOT NULL,
+ 
+	'fk_schueler' INT NOT NULL,
+	'ergebnis' INT,
+	PRIMARY KEY ('id'),
+  
+	INDEX 'fk_schueler_idx' ('fk_schueler' ASC),
+  
+	INDEX 'fk_lehrer_idx' ('fk_lehrer' ASC),
+	INDEX 'fk_fragenkatalog_idx' ('fk_fragenkatalog' ASC),
+  
+	INDEX 'fk_fach_idx' ('fk_fach' ASC),
+  
+	INDEX 'fk_klasse_idx' ('fk_klasse' ASC),
+  
+	CONSTRAINT 'fk_schueler'   FOREIGN KEY ('fk_schueler')
+    REFERENCES 'bewertung'.'t_schueler' ('id')
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  
+	CONSTRAINT 'fk_lehrer'    FOREIGN KEY ('fk_lehrer')
+    REFERENCES 'bewertung'.'t_lehrer' ('id')
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  
+	CONSTRAINT 'fk_fragenkatalog'
+    FOREIGN KEY ('fk_fragenkatalog')
+    REFERENCES 'bewertung'.'t_fragenkatalog' ('id')
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  
+	CONSTRAINT 'fk_fach'
+    FOREIGN KEY ('fk_fach')
+    REFERENCES 'bewertung'.'t_fach' ('id')
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  
+	CONSTRAINT 'fk_klasse'
+    FOREIGN KEY ('fk_klasse')
+    REFERENCES 'bewertung'.'t_klasse' ('id')
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+8. ALTER TABLE 'bewertung'.'t_ergebnis' 
+ADD COLUMN 'ergebnis' INT NULL AFTER 'fk_schueler';
