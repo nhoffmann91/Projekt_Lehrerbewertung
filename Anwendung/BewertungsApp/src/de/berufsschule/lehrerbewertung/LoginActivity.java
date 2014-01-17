@@ -1,6 +1,7 @@
-package de.berufsschule.bewertungsApp; 
+package de.berufsschule.lehrerbewertung; 
 
 import controller.EventHandler;
+import de.berufsschule.bewertungsApp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

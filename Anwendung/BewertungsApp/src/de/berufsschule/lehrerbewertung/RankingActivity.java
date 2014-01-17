@@ -1,21 +1,22 @@
-package de.berufsschule.bewertungsApp;
+package de.berufsschule.lehrerbewertung;
 
+import de.berufsschule.bewertungsApp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class RatingActivity extends Activity {
+public class RankingActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_rating);
+		setContentView(R.layout.activity_ranking);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.rating, menu);
+		getMenuInflater().inflate(R.menu.ranking, menu);
 		return true;
 	}
 

@@ -2,7 +2,8 @@ package controller;
 
 import android.widget.TextView;
 
-public class EventHandler {
+public class EventHandler {	
+	
 	private static EventHandler eventHandler = null;
 	
 	public EventHandler(){}
