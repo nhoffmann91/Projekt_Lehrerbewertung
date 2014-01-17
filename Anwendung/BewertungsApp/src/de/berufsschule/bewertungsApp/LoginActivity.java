@@ -15,6 +15,15 @@ public class LoginActivity extends Activity {
 	private TextView txtViewUsername;
 	private TextView txtViewPassword;
 	
+	private OnClickListener onClickHandler = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			if(v == btnLogin)
+				EventHandler.getInstance().btnLoginClick(txtViewPassword, txtViewUsername);
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,13 +34,7 @@ public class LoginActivity extends Activity {
 	}
 
 	private void addEvents() {
-		btnLogin.setOnClickListener(new OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				 EventHandler.getInstance().btnLoginClick(LoginActivity.this, MainActivity.class);
-			}
-		});
+		btnLogin.setOnClickListener(this.onClickHandler);
 	}
 
 	private void setViewControls() {

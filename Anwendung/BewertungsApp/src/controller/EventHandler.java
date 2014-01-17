@@ -1,9 +1,6 @@
 package controller;
 
-import de.berufsschule.bewertungsApp.LoginActivity;
-import de.berufsschule.bewertungsApp.MainActivity;
-import android.R;
-import android.view.View;
+import android.widget.TextView;
 
 public class EventHandler {
 	private static EventHandler eventHandler = null;
@@ -16,7 +13,14 @@ public class EventHandler {
 		return eventHandler;
 	}
 
-	public void btnLoginClick(LoginActivity loginActivity, Class<MainActivity> class1) {
-		//String username = loginActivity.
+	public void btnLoginClick(TextView txtViewPassword, TextView txtViewUsername) {
+		String username = (String)txtViewUsername.getText();
+		String password = (String)txtViewPassword.getText();
+		
+		MySqlAdapter mySqlAdapter = new MySqlAdapter();
+		
+		if(mySqlAdapter.isConnected()){
+			bool
+		}
 	}
 }
