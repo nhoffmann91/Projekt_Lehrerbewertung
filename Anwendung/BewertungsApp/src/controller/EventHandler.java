@@ -1,54 +1,69 @@
 package controller;
 
+import helper.Constants;
+import helper.SQLHelper;
+import de.berufsschule.lehrerbewertung.LoginActivity;
 import de.berufsschule.lehrerbewertung.RankingActivity;
 import de.berufsschule.lehrerbewertung.TeacherChoiceActivity;
 import android.app.Activity;
 import android.content.Intent;
 
-public class EventHandler {	
-	
+public class EventHandler {
+
 	private static EventHandler eventHandler = null;
-	
-	public EventHandler(){}
-	
-	public static EventHandler getInstance(){
-		if(eventHandler == null)
+
+	public EventHandler() {
+	}
+
+	public static EventHandler getInstance() {
+		if (eventHandler == null)
 			eventHandler = new EventHandler();
 		return eventHandler;
 	}
 
-	public void btnLoginClick(String username, String password, Activity context) {		
-		MySqlAdapter mySqlAdapter = new MySqlAdapter();
-		
-		if(mySqlAdapter.isConnected()){
-			// Neues Intent anlegen
-            Intent ranking = new Intent(context.getApplicationContext(), RankingActivity.class);
+	// Method to handle the login button click event
+	public void btnLoginClick(String username, String password, Activity context) {
+		try {
+			// Set the pupil id
+			SQLHelper.getInstance().setPupilIdIfNotExists(username, password);
+			// Create new intent
+			Intent ranking = new Intent(context.getApplicationContext(),
+					RankingActivity.class);
 
-            // Intent mit den Daten füllen
-            // nextScreen.putExtra("Vorname", inputVorname.getText().toString());
-            // nextScreen.putExtra("Nachname", inputNachname.getText().toString());
+			// Start intent and change to ranking activity
+			context.startActivity(ranking);
+		} catch (Exception e) {
+			Intent login = new Intent(context.getApplicationContext(),
+					LoginActivity.class);
 
-            // Intent starten und zur zweiten Activity wechseln
-            context.startActivity(ranking);
-        }
-		else{
-			
+			// Put data into the intent
+			login.putExtra(Constants.ErrorKey, e.getLocalizedMessage());
+
+			// Start intent and change to login activity
+			context.startActivity(login);
 		}
 	}
 
+	// Method to handle the rate other teacher button click event
 	public void btnRateOtherTeacherClick(Activity context) {
-		// TODO Auto-generated method stub
-		// Neues Intent anlegen
-        Intent otherTeacher = new Intent(context.getApplicationContext(), TeacherChoiceActivity.class);
+		// Create new intent
+		Intent otherTeacher = new Intent(context.getApplicationContext(),
+				TeacherChoiceActivity.class);
 
-        // Intent mit den Daten füllen
-        // nextScreen.putExtra("Vorname", inputVorname.getText().toString());
-        // nextScreen.putExtra("Nachname", inputNachname.getText().toString());
-
-        // Intent starten und zur zweiten Activity wechseln
-        context.startActivity(otherTeacher);
+		// Start intent and change to teacher choice activity
+		context.startActivity(otherTeacher);
 	}
 
 	public void btnSubmit(String teacher, String subject, Activity context) {
+	}
+
+	public void spnTeacherItemChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void spnSubjectItemChange() {
+		// TODO Auto-generated method stub
+		
 	}
 }
